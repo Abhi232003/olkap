@@ -45,7 +45,7 @@ body{
   background-image: url('./assets/bg.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 80%;
   opacity: 0.08;
   z-index: -1;
 }
@@ -60,7 +60,7 @@ body{
 }
 
 .logo {
-  width: 800px;
+  width: 750px;
   fill: #985648;
 }
 
@@ -82,7 +82,6 @@ body{
 
 .main-content h1 {
   font-size: 1.5rem;
-  font-weight: bold;
   margin: 0.5rem 0;
 }
 
@@ -97,7 +96,7 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 85vw;
   padding: 0 2rem;
   position: absolute;
   bottom: 5rem;
@@ -107,21 +106,19 @@ body{
 .social-link {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.social-icon {
-  width: 20px;
-  height: 20px;
+  gap: 8px; /* Spacing between icon and text */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the same color as the parent element */
 }
 
 .main-content h1 {
   font-size: 1.5rem;
-  font-weight: 700; /* Bold weight for header */
+  font-weight: 300; /* Bold weight for header */
+  margin-bottom: 10rem;
 }
 
 .main-content p {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 400; /* Regular weight for paragraph */
 }
 

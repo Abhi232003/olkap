@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import instagramLogo from './assets/instagram.svg'
-import linkedinLogo from './assets/linkedin.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import logo from './assets/logo.svg';
 import './App.css';
 import MouseTrail from './MouseTrail';
@@ -20,22 +20,22 @@ function App() {
 
       <div className="main-content">
         <h1>ACCENTS · OBJECTS · LIFESTYLE</h1>
-        <p>We are crafting something special. Till then connect to us through our socials.</p>
+        <p>We are crafting something special. <br /> Till then connect to us through our socials.</p>
 
         <div className="footer">
-          <div className="social-link">
-            <img src={instagramLogo} alt="Instagram Logo" className="social-icon" />
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <FontAwesomeIcon icon={faInstagram} className="social-icon" />
             <span>Instagram</span>
-          </div>
+          </a>
           <span className="address-text">Tower 1, City Point, Boat Club Rd, Pune - 411001</span>
-          <div className="social-link">
-            <img src={linkedinLogo} alt="LinkedIn Logo" className="social-icon" />
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
             <span>LinkedIn</span>
-          </div>
+          </a>
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default App;
