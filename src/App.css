@@ -50,6 +50,17 @@ body{
   z-index: -1;
 }
 
+.logoT {
+  position: fixed;
+  top: 10px;  /* Adjust if needed */
+  right: 10px;  /* Adjust if needed */
+  width: 100px;
+  height: 100px;
+  z-index: 2;
+}
+
+
+
 /* Centered Logo */
 .centered-logo {
   position: fixed;
