@@ -13,6 +13,21 @@
   z-index: 0;
 }
 
+/* Centered Logo */
+.centered-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.logo {
+  width: 800px;
+  fill: #985648;
+}
+
+/* Main Content */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -31,13 +46,9 @@
   margin: 0.5rem 0;
 }
 
-.logo {
-  width: 600px;
-  fill: #985648;
-  margin: 1rem 0;
-}
-
 .main-content p {
+  position: relative;
+  top: 5rem;
   font-size: 1.5rem;
   margin: 5rem 0;
 }

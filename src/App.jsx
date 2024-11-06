@@ -4,22 +4,23 @@ import logo from './assets/logo.svg';
 import './App.css';
 import MouseTrail from './MouseTrail';
 
-
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
       <MouseTrail />
-      
 
       <div className="app-background">
         {/* Empty background */}
       </div>
 
+      <div className="centered-logo">
+        <img src={logo} alt="Company Logo" className="logo" />
+      </div>
+
       <div className="main-content">
         <h1>ACCENTS · OBJECTS · LIFESTYLE</h1>
-        <img src={logo} alt="Company Logo" className="logo" />
         <p>We are crafting something special. Till then connect to us through our socials.</p>
 
         <div className="footer">
