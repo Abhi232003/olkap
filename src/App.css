@@ -93,7 +93,7 @@ body{
 }
 
 .footer {
-  display: flex-box;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 85vw;
