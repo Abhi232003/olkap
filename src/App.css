@@ -21,7 +21,10 @@
 
 
 /* Apply the Quilon font to the whole app */
-body, .main-content, .footer {
+body{
+    background-color: #FEFAE0;
+}
+.main-content, .footer {
   font-family: 'Quilon', sans-serif;
   color: #333; /* You can adjust this color as needed */
 }
