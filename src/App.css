@@ -1,4 +1,4 @@
-/* Full-screen background with 20% opacity */
+/* Full-screen background with 10% opacity */
 .app-background {
   position: absolute;
   top: 0;
@@ -9,8 +9,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.2;
-  z-index: -1;
+  opacity: 0.1;
+  z-index: 0;
 }
 
 .main-content {
@@ -32,8 +32,8 @@
 }
 
 .logo {
-  width: 600px; /* Adjust size as needed */
-  fill: #985648; /* Ensures color #985648 for the logo if it's an SVG with fill property */
+  width: 600px;
+  fill: #985648;
   margin: 1rem 0;
 }
 
