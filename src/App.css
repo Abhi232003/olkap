@@ -1,4 +1,38 @@
-/* Full-screen background with 10% opacity */
+@font-face {
+  font-family: 'Quilon';
+  src: url('./assets/fonts/Quilon-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Abhaya Libre';
+  src: url('./assets/fonts/AbhayaLibre-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Abhaya Libre medium';
+  src: url('./assets/fonts/AbhayaLibre-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+/* Apply the Quilon font to the whole app */
+body, .main-content, .footer {
+  font-family: 'Quilon', sans-serif;
+  color: #333; /* You can adjust this color as needed */
+}
+
+.special-text {
+  font-family: 'Abhaya Libre', sans-serif;
+  font-weight: 800; /* Extra Bold weight */
+  font-size: 1.5rem; /* Adjust as needed */
+  color: #333; /* Adjust color as needed */
+}
+
 .app-background {
   position: absolute;
   top: 0;
@@ -9,8 +43,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.1;
-  z-index: 0;
+  opacity: 0.08;
+  z-index: -1;
 }
 
 .main-content {
@@ -18,6 +52,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
   height: 100vh;
   color: #333;
   text-align: center;
@@ -32,7 +69,7 @@
 }
 
 .logo {
-  width: 600px;
+  width: 600px; /* Adjust size as needed */
   fill: #985648;
   margin: 1rem 0;
 }
@@ -51,4 +88,41 @@
   position: absolute;
   bottom: 5rem;
   font-size: 1.3rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.main-content h1 {
+  font-size: 1.5rem;
+  font-weight: 700; /* Bold weight for header */
+}
+
+.main-content p {
+  font-size: 1.5rem;
+  font-weight: 400; /* Regular weight for paragraph */
+}
+
+.footer {
+  font-weight: 500; /* Semi-bold weight for footer text */
+  font-size: 1.3rem;
+}
+
+.social-link span {
+  font-weight: 400; /* Normal weight for social media text */
+}
+
+.address-text {
+  font-family: 'Abhaya Libre', sans-serif;
+  font-weight: 500; /* Medium weight */
+  font-size: 1.3rem; /* Adjust as needed */
+  color: #333; /* Adjust color as needed */
 }
