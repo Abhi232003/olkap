@@ -6,8 +6,6 @@ import './App.css';
 import MouseTrail from './MouseTrail';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <MouseTrail />
