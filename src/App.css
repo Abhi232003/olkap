@@ -63,7 +63,7 @@ body{
 
 /* Centered Logo */
 .centered-logo {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -140,4 +140,112 @@ body{
   font-weight: 500; /* Medium weight */
   font-size: 1.3rem; /* Adjust as needed */
   color: #333; /* Adjust color as needed */
+}
+
+/* Responsive Styles */
+
+/* Small screens (mobile) */
+@media (max-width: 767px) {
+  .main-content {
+    width: 95%;
+    padding: 2rem;
+  }
+
+  .main-content h1 {
+    font-size: 1.2rem;
+    margin-bottom: 5rem;
+  }
+
+  .main-content p {
+    font-size: 1.2rem;
+    top: 2rem;
+    margin: 2rem 0;
+  }
+
+  .footer {
+    width: 95%;
+    padding: 0 1rem;
+    bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .logoT {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo {
+    width: 80%;
+  }
+}
+
+/* Medium screens (tablet) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .main-content {
+    width: 90%;
+    padding: 3rem;
+  }
+
+  .main-content h1 {
+    font-size: 1.3rem;
+    margin-bottom: 7rem;
+  }
+
+  .main-content p {
+    font-size: 1.3rem;
+    top: 3rem;
+    margin: 3rem 0;
+  }
+
+  .footer {
+    width: 90%;
+    padding: 0 1.5rem;
+    bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .logoT {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logo {
+    width: 90%;
+  }
+}
+
+/* Large screens (desktop) */
+@media (min-width: 1024px) {
+  .main-content {
+    width: 90%;
+    max-width: 800px;
+    padding: 4rem;
+  }
+
+  .main-content h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10rem;
+  }
+
+  .main-content p {
+    font-size: 1.5rem;
+    top: 5rem;
+    margin: 5rem 0;
+  }
+
+  .footer {
+    width: 85vw;
+    padding: 0 2rem;
+    bottom: 5rem;
+    font-size: 1.3rem;
+  }
+
+  .logoT {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo {
+    width: 750px;
+  }
 }
