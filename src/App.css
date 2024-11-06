@@ -83,15 +83,6 @@ body, .main-content, .footer {
   margin: 0.5rem 0;
 }
 
-<<<<<<< HEAD
-=======
-.logo {
-  width: 600px; /* Adjust size as needed */
-  fill: #985648;
-  margin: 1rem 0;
-}
-
->>>>>>> 3fb292389722ae4ecc17d78351fc2187679dd4c7
 .main-content p {
   position: relative;
   top: 5rem;
