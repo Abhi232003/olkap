@@ -1,77 +1,133 @@
-import React, { useEffect, useRef } from 'react';
-function MouseTrail() {
+import React, { useEffect, useRef, useState } from 'react';
+
+const MouseTouchTrail = () => {
   const svgRef = useRef(null);
   const pathRef = useRef(null);
-  const points = [];
-  const segments = 200; // More segments for smoother trail
-  const mouse = { x: 0, y: 0 };
+  const requestRef = useRef(null);
+  // Increased number of segments for smoother trail
+  const [points] = useState(Array(400).fill({ x: -100, y: -100 }));
+  const mouseRef = useRef({ x: -100, y: -100 });
+  const isMovingRef = useRef(false);
+  const lastMoveTime = useRef(Date.now());
+  const isTouchDevice = useRef(false);
 
-  // Mouse move handler to track mouse position
-  const move = (event) => {
-    const x = event.clientX;
-    const y = event.clientY;
-    mouse.x = x;
-    mouse.y = y;
-
-    // Initialize points array on the first move
-    if (points.length === 0) {
-      for (let i = 0; i < segments; i++) {
-        points.push({ x, y });
-      }
+  const updatePosition = (x, y) => {
+    mouseRef.current = { x, y };
+    lastMoveTime.current = Date.now();
+    isMovingRef.current = true;
+    
+    if (points.every(p => p.x === -100 && p.y === -100)) {
+      points.forEach((_, i) => {
+        points[i] = { x, y };
+      });
     }
   };
 
-  // Animation loop to update trail points and path
-  const anim = () => {
-    let px = mouse.x;
-    let py = mouse.y;
+  const handleMove = (event) => {
+    if (event.type === 'mousemove' && isTouchDevice.current) return;
 
-    points.forEach((p, index) => {
-      const next = points[index + 1];
-      if (next) {
-        px += (next.x - px) * 0.1; // Smooth out the movement
-        py += (next.y - py) * 0.1;
-      }
-      p.x = px;
-      p.y = py;
+    const x = event.type.includes('touch')
+      ? event.touches[0].clientX 
+      : event.clientX;
+    const y = event.type.includes('touch')
+      ? event.touches[0].clientY 
+      : event.clientY;
+    
+    updatePosition(x, y);
+  };
+
+  const handleTouchStart = (event) => {
+    isTouchDevice.current = true;
+    handleMove(event);
+  };
+
+  const handleTouchEnd = () => {
+    isMovingRef.current = false;
+    mouseRef.current = { x: -100, y: -100 };
+    points.forEach(p => {
+      p.x = -100;
+      p.y = -100;
     });
-
-    // Update the path 'd' attribute to form the trail
-    if (pathRef.current) {
-      pathRef.current.setAttribute(
-        'd',
-        `M ${points.map((p) => `${p.x} ${p.y}`).join(' L ')}`
-      );
-    }
-
-    requestAnimationFrame(anim);
   };
 
-  // Resize the SVG based on window size
-  const resize = () => {
-    const ww = window.innerWidth;
-    const wh = window.innerHeight;
+  const animate = () => {
+    if (!isTouchDevice.current && Date.now() - lastMoveTime.current > 500) { //time in ms
+      isMovingRef.current = false;
+      mouseRef.current = { x: -100, y: -100 };
+      points.forEach(p => {
+        p.x = -100;
+        p.y = -100;
+      });
+    }
 
+    if (isMovingRef.current) {
+      let px = mouseRef.current.x;
+      let py = mouseRef.current.y;
+
+      points.forEach((p, index) => {
+        const next = points[index + 1];
+        if (next) {
+          // Reduced smoothing factor for slower movement
+          px += (next.x - px) * 0.15;
+          py += (next.y - py) * 0.15;
+        }
+        points[index] = { x: px, y: py };
+      });
+    }
+
+    if (pathRef.current) {
+      // Added curve interpolation for smoother trail
+      const pathData = points.reduce((path, point, index) => {
+        if (index === 0) {
+          return `M ${point.x} ${point.y}`;
+        }
+        if (index % 2 === 0) { // Using every other point for smoother curves
+          const prevPoint = points[index - 1];
+          const cpX = (prevPoint.x + point.x) / 2;
+          const cpY = (prevPoint.y + point.y) / 2;
+          return `${path} Q ${cpX} ${cpY}, ${point.x} ${point.y}`;
+        }
+        return path;
+      }, '');
+      
+      pathRef.current.setAttribute('d', pathData);
+    }
+
+    requestRef.current = requestAnimationFrame(animate);
+  };
+
+  const handleResize = () => {
     if (svgRef.current) {
+      const ww = window.innerWidth;
+      const wh = window.innerHeight;
       svgRef.current.style.width = `${ww}px`;
       svgRef.current.style.height = `${wh}px`;
       svgRef.current.setAttribute('viewBox', `0 0 ${ww} ${wh}`);
     }
   };
 
-  // Attach event listeners for mouse movement and window resize
   useEffect(() => {
-    document.addEventListener('mousemove', move);
-    window.addEventListener('resize', resize);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
+    document.addEventListener('touchmove', handleMove, { passive: true });
+    document.addEventListener('touchend', handleTouchEnd);
+    document.addEventListener('touchcancel', handleTouchEnd);
+    window.addEventListener('resize', handleResize);
 
-    // Start animation and initial resize
-    anim();
-    resize();
+    handleResize();
+    requestRef.current = requestAnimationFrame(animate);
 
-    // Clean up event listeners on component unmount
     return () => {
-      document.removeEventListener('mousemove', move);
-      window.removeEventListener('resize', resize);
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchmove', handleMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('touchcancel', handleTouchEnd);
+      window.removeEventListener('resize', handleResize);
+      
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
     };
   }, []);
 
@@ -87,9 +143,16 @@ function MouseTrail() {
         zIndex: 2,
       }}
     >
-      <path ref={pathRef} fill="none" stroke="#8c4e41" strokeWidth="6" />
+      <path
+        ref={pathRef}
+        fill="none"
+        stroke="#8c4e41"
+        strokeWidth="9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
-}
+};
 
-export default MouseTrail;
+export default MouseTouchTrail;
