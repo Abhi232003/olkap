@@ -164,16 +164,16 @@ body {
   }
 }
 
-@media (max-height: 600px) {
+@media (max-width: 600px) {
   .main-content h1 {
     top: 25%;
   }
 
   .main-content p {
-    top: 80%;
+    margin-top: -50px;
   }
 
   .footer {
-    bottom: 2%;
+    bottom: 5%;
   }
 }
