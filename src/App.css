@@ -166,9 +166,6 @@ body {
     top: 30%;
   }
 
-  .main-content p {
-    top: 75%;
-  }
 }
 
 @media (max-width: 600px) {
