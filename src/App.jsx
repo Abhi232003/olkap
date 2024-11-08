@@ -25,7 +25,7 @@ function App() {
 
       <div className="main-content">
         <h1>ACCENTS · OBJECTS · LIFESTYLE</h1>
-        <p>We are crafting something special. <br /> Till then connect to us through our socials.</p>
+        <p>We are crafting something special. <br /> Till then connect with us through our socials.</p>
     
         <div className="footer">
           <a href="https://www.instagram.com/olkap.official/" target="_blank" rel="noopener noreferrer" className="social-link">

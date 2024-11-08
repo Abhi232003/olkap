@@ -96,7 +96,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: clamp(1.2rem, 2vw, 1.5rem);
-  margin: 0;
+  margin-top: -3rem;
   font-family: 'Quilon';
   font-weight: 300;
   width: 100%;
@@ -109,9 +109,9 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: clamp(1.2rem, 2vw, 1.5rem);
-  margin: 0;
+  margin-top: 2rem;
   font-family: 'Clash Display';
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 550;
   width: 100%;
   text-align: center;
@@ -165,6 +165,17 @@ body {
   .main-content h1 {
     top: 30%;
   }
+  .address-text {
+    order: -1; /* This brings the address to the top */
+  }
+
+  .social-link:nth-of-type(1) {
+    order: 0; /* Instagram link */
+  }
+
+  .social-link:nth-of-type(2) {
+    order: 1; /* LinkedIn link */
+  }
 
 }
 
@@ -180,5 +191,19 @@ body {
 
   .footer {
     bottom: 5%;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .address-text {
+    order: -1; /* This brings the address to the top */
+  }
+
+  .social-link:nth-of-type(1) {
+    order: 0; /* Instagram link */
+  }
+
+  .social-link:nth-of-type(2) {
+    order: 1; /* LinkedIn link */
   }
 }
