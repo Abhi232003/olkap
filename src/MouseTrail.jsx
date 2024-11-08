@@ -5,7 +5,7 @@ const MouseTouchTrail = () => {
   const pathRef = useRef(null);
   const requestRef = useRef(null);
   // Increased number of segments for smoother trail
-  const [points] = useState(Array(50).fill({ x: -100, y: -100 }));
+  const [points] = useState(Array(250).fill({ x: -100, y: -100 }));
   const mouseRef = useRef({ x: -100, y: -100 });
   const isMovingRef = useRef(false);
   const lastMoveTime = useRef(Date.now());
